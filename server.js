@@ -154,7 +154,7 @@ io.on('connection', function(socket){
     	var date = new Date().toLocaleString('en-US');
     	var message = new models.newsFeed({
     		"user": clientUser.username,
-    		"photo": clientUser.photos[0].value.replace('_normal',''),
+    		"photo": clientUser.photos[0].value,
     		"message": msg,
     		"posted": date
 
@@ -164,17 +164,15 @@ io.on('connection', function(socket){
 
     message.save();
     //console.log("before emitting newsfeed signal") ;
-    io.emit("chat message", msg);
-    //console.log("after emitting newsfeed signal") ;	
-    //console.log('message: ' + msg);
+    io.emit("new message", msg);
+
+    console.log("after emitting newsfeed signal") ;	
     }
     catch(err){
     	console.log("error at socket.on:"  + err);
     }
-   
-});
-  	
-  	
+	});
+
 });
 // socket.on looks to receive "newsfeed events being emitted from the client"
 
