@@ -9,14 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WeibelLab-Teaching/cogs121-sp16-ass1.git"
+    "url": "https://github.com/Snowyace/cogs121-sp16-ass1.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WeibelLab-Teaching/cogs121-sp16-ass1/issues"
+    "url": "https://github.com/Snowyace/cogs121-sp16-ass1.git"
   },
-  "homepage": "https://github.com/WeibelLab-Teaching/cogs121-sp16-ass1#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
     "connect-mongo": "~1.1.0",
