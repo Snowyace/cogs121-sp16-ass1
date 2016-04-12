@@ -32,7 +32,7 @@
     socket.on('new message', function(msg){
         
         //var parsedData= socket.request.session.passport.user;
-        console.log('hello');
+        console.log(msg);
         $('#messages').append($('<li>').text(msg));
         //$('#messages').append($('<li>').html(messageTemplate(parsedData)));
 

@@ -27,8 +27,6 @@ var parser = {
     cookie: require("cookie-parser")
 };
 
-var strategy = { /* TODO */ };
-
 // Database Connection
 var db = mongoose.connection;
  var credentials = require('./credentials.js');
