@@ -46,7 +46,7 @@ var db = mongoose.connection;
 // session middleware
 var session_middleware = session({
     key: "session",
-    secret: process.env.SESSION_SECRET,
+    secret: "4fa238c5d0d632881b6786f3b2d944950169948f",
     saveUninitialized: true,
     resave: true,
     store: new MongoStore({ mongooseConnection: db })
@@ -71,8 +71,8 @@ app.use(passport.session());
 /* TODO: Use Twitter Strategy for Passport here */
 
 passport.use(new TwitterStrategy({
-    consumerKey: process.env.TWITTER_CONSUMER_KEY,
-    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    consumerKey: "iW8dxcQPLjVogd4noFqhVWCQZ",
+    consumerSecret: "KQRckBG7Lu64VdIxmbdOKcCHmBhzpnKnUKqtbfm0p5gDFzoCNi",
     callbackURL: "/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
