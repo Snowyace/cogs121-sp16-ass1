@@ -1,19 +1,37 @@
-(function($) {
+(function($) {/*
     "use strict";
     /* TODO: Start your Javascript code here */
+   
     var socket = io();
+    $('#send_message').click(function(){
+        console.log('hello');
+    })
+    
+    socket.on('sidebar', function(profile){
+        var parsedData =  profile;
+        //console.log("helloooooooooooo2");
+        //console.log("helloooooooooooo" + parsedData.photos[0].value());
+        //$('#sidebar').append($('<li>').html(messageTemplate(parsedData)));
+        //function messageTemplate(template) {
+        //var result = '<div class="sidebar">' +
+            //'<img src="' + template.photos[0].value + '" alt="">' +
+           // '</div>';
+        //return result;
+       // }
+    });
+
     $('#send_message').submit(function(){
+        console.log($('#user_input').val());
         // socket.emit sends out chat message events with attached data. In this case the submitted form data from #user.input
         socket.emit('chat message', $('#user_input').val());
-        $('#user_input').val('');
         //$('#messages').append($('<li>').text($('#user_input').val()));
-        var parsedData= socket.request.session.passport.user;
+        $('#user_input').val('');
         console.log("hello");
-         $('#messages').append($('<li>').html(messageTemplate(parsedData)));
+         //$('#messages').append($('<li>').html(messageTemplate(parsedData)));
     return false;
          // grab and parse data and assign it to the parsedData variable.
         //updating new message
-        function messageTemplate(template) {
+        /*function messageTemplate(template) {
         var result = '<div class="user">' +
             '<div class="user-image">' +
             '<img src="' + template.photo + '" alt="">' +
@@ -28,25 +46,24 @@
 
             return result;
         }
+        */
     });
     socket.on('new message', function(msg){
-        
-        //var parsedData= socket.request.session.passport.user;
-        console.log(msg);
-        $('#messages').append($('<li>').text(msg));
-        //$('#messages').append($('<li>').html(messageTemplate(parsedData)));
-
+        var parsedData =  msg;
+        //$('#messages').append($('<li>'));
+        $('#messages').prepend($('<li>').html(messageTemplate(parsedData)));
+        //console.log("helloooooooooooo " + parsedData.message)
         function messageTemplate(template) {
-        var result = '<div class="user">' +
+        var result = '<hr>' +'<div class="user">' +
             '<div class="user-image">' +
             '<img src="' + template.photo + '" alt="">' +
             '</div>' +
             '<div class="user-info">' +
-            '<span class="username">' + template.username + '</span><br/>' +
+            '<span class="username">' + template.user + '</span><br/>' +
             '<span class="posted">' + template.posted + '</span>' +
             '</div>' +
             '</div>' +
-            '<div class="message-content">' + msg +
+            '<div class="message-content">' + template.message +
             '</div>';
         return result;
         }

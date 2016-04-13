@@ -92,7 +92,7 @@ passport.use(new TwitterStrategy({
     			"photo": profile.photos[0].value.replace('_normal',''),
     			"date": date
         	});
-
+        	console.log("helloooooooooooooooooo" + user.username);
         	user.save(afterSaving);
         	function afterSaving(err){
         		return done(null, profile);
@@ -115,7 +115,9 @@ passport.use(new TwitterStrategy({
     	}
     });
   }
+
 ));
+
 /* TODO: Passport serialization here */
 
 passport.serializeUser(function(user, done) {
@@ -146,8 +148,10 @@ io.use(function(socket, next) {
 /* TODO: Server-side Socket.io here */
 io.on('connection', function(socket){
 	//socket.on looks to receive "chat message events being emitted from the client"
+  	
   	socket.on('chat message', function(msg){
   	var clientUser = socket.request.session.passport.user;
+  	//console.log("test-----------------------" + clientUser);
     try{
     	var date = new Date().toLocaleString('en-US');
     	var message = new models.newsFeed({
@@ -162,15 +166,15 @@ io.on('connection', function(socket){
 
     message.save();
     //console.log("before emitting newsfeed signal") ;
-    io.emit("new message", msg);
-
+    //console.log("helloooooooooooooooooo + "message.message)
+    io.emit("new message", message);
     console.log("after emitting newsfeed signal") ;	
     }
     catch(err){
     	console.log("error at socket.on:"  + err);
     }
 	});
-
+//console.log("test-----------------------" + socket.request.session.passport.user.username);
 });
 // socket.on looks to receive "newsfeed events being emitted from the client"
 
